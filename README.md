@@ -1,2 +1,9 @@
-# midicontrol
-Simple MIDI control surface built with GTK+ and ALSA
+# Midi Controller
+
+## Update information
+
+* v0.1 - First version
+
+## Introduction
+
+Coming soon

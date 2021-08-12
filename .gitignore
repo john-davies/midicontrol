@@ -1,0 +1,9 @@
+
+# Object files
+*.o
+
+#Executable
+midicontrol
+
+# Glade Backup files
+glade/*.*~
