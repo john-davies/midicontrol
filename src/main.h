@@ -25,6 +25,15 @@
 #define PORT_NAME "Output"
 #define CC_VALUE 7
 
+// Maximum path & file lengths etc
+#define APP_NAME_SIZE 256
+#define MAX_PATHSIZE 4096
+#define MAX_FILENAME 256
+#define MAX_LINESIZE 1024
+#define MAX_WINDOW_TITLE APP_NAME_SIZE + MAX_FILENAME + 4
+#define DIRECTORY_SEPARATOR '/'
+#define NO_OF_SLIDERS 16
+
 // Useful macros
 // Convert a boolean into a printable string
 #define btoa(x) ( (x) ? "TRUE" : "FALSE" )
@@ -33,22 +42,16 @@
 typedef struct {
     // Pointers to widgets
     GtkWidget *w_window_main;
-    GtkWidget *w_ch1_slider;
-    GtkWidget *w_ch2_slider;
-    GtkWidget *w_ch3_slider;
-    GtkWidget *w_ch4_slider;
-    GtkWidget *w_ch5_slider;
-    GtkWidget *w_ch6_slider;
-    GtkWidget *w_ch7_slider;
-    GtkWidget *w_ch8_slider;
-    GtkWidget *w_ch9_slider;
-    GtkWidget *w_ch10_slider;
-    GtkWidget *w_ch11_slider;
-    GtkWidget *w_ch12_slider;
-    GtkWidget *w_ch13_slider;
-    GtkWidget *w_ch14_slider;
-    GtkWidget *w_ch15_slider;
-    GtkWidget *w_ch16_slider;
+    GtkWidget *w_sliders[ NO_OF_SLIDERS ];
+    GtkWidget *w_dlg_open;
+    GtkWidget *w_dlg_save_as;
+
+    // Current open file path
+    gchar app_name[ APP_NAME_SIZE ];
+    gchar current_file_path[ MAX_PATHSIZE ];
+    gchar current_file_name[ MAX_FILENAME ];
+    gchar window_title[ MAX_WINDOW_TITLE ];
+
 } app_widgets;
 
 // Error return for file operations

@@ -71,22 +71,33 @@ int main( int argc, char *argv[] )
     window = GTK_WIDGET(gtk_builder_get_object(builder, "window_main"));
     // Pointers to widgets here
     widgets->w_window_main = window;
-    widgets->w_ch1_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch1_slider" ) );
-    widgets->w_ch2_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch2_slider" ) );
-    widgets->w_ch3_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch3_slider" ) );
-    widgets->w_ch4_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch4_slider" ) );
-    widgets->w_ch5_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch5_slider" ) );
-    widgets->w_ch6_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch6_slider" ) );
-    widgets->w_ch7_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch7_slider" ) );
-    widgets->w_ch8_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch8_slider" ) );
-    widgets->w_ch9_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch9_slider" ) );
-    widgets->w_ch10_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch10_slider" ) );
-    widgets->w_ch11_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch11_slider" ) );
-    widgets->w_ch12_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch12_slider" ) );
-    widgets->w_ch13_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch13_slider" ) );
-    widgets->w_ch14_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch14_slider" ) );
-    widgets->w_ch15_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch15_slider" ) );
-    widgets->w_ch16_slider = GTK_WIDGET( gtk_builder_get_object( builder, "ch16_slider" ) );
+    widgets->w_sliders[0] = GTK_WIDGET( gtk_builder_get_object( builder, "ch1_slider" ) );
+    widgets->w_sliders[1] = GTK_WIDGET( gtk_builder_get_object( builder, "ch2_slider" ) );
+    widgets->w_sliders[2] = GTK_WIDGET( gtk_builder_get_object( builder, "ch3_slider" ) );
+    widgets->w_sliders[3] = GTK_WIDGET( gtk_builder_get_object( builder, "ch4_slider" ) );
+    widgets->w_sliders[4] = GTK_WIDGET( gtk_builder_get_object( builder, "ch5_slider" ) );
+    widgets->w_sliders[5] = GTK_WIDGET( gtk_builder_get_object( builder, "ch6_slider" ) );
+    widgets->w_sliders[6] = GTK_WIDGET( gtk_builder_get_object( builder, "ch7_slider" ) );
+    widgets->w_sliders[7] = GTK_WIDGET( gtk_builder_get_object( builder, "ch8_slider" ) );
+    widgets->w_sliders[8] = GTK_WIDGET( gtk_builder_get_object( builder, "ch9_slider" ) );
+    widgets->w_sliders[9] = GTK_WIDGET( gtk_builder_get_object( builder, "ch10_slider" ) );
+    widgets->w_sliders[10] = GTK_WIDGET( gtk_builder_get_object( builder, "ch11_slider" ) );
+    widgets->w_sliders[11] = GTK_WIDGET( gtk_builder_get_object( builder, "ch12_slider" ) );
+    widgets->w_sliders[12] = GTK_WIDGET( gtk_builder_get_object( builder, "ch13_slider" ) );
+    widgets->w_sliders[13] = GTK_WIDGET( gtk_builder_get_object( builder, "ch14_slider" ) );
+    widgets->w_sliders[14] = GTK_WIDGET( gtk_builder_get_object( builder, "ch15_slider" ) );
+    widgets->w_sliders[15] = GTK_WIDGET( gtk_builder_get_object( builder, "ch16_slider" ) );
+    widgets->w_dlg_open = GTK_WIDGET( gtk_builder_get_object( builder, "dlg_open" ) );
+    widgets->w_dlg_save_as = GTK_WIDGET( gtk_builder_get_object( builder, "dlg_save_as" ) );
+
+    // Bodge to get around Glade problem
+    gtk_file_chooser_set_action( GTK_FILE_CHOOSER( widgets->w_dlg_save_as ), GTK_FILE_CHOOSER_ACTION_SAVE );
+
+    // Update file names & titles etc
+    strncpy( widgets->app_name, gtk_window_get_title( GTK_WINDOW( window ) ), APP_NAME_SIZE-1 );
+    widgets->app_name[APP_NAME_SIZE] = '\0';
+    widgets->current_file_path[0] = '\0';
+    widgets->current_file_name[0] = '\0';
 
      // Widgets pointer are passed to all widget handler functions as the user_data parameter
     gtk_builder_connect_signals( builder, widgets );

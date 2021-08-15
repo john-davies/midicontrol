@@ -20,6 +20,7 @@
 
 void on_load_button_clicked( GtkWidget *, app_widgets * );
 void on_save_button_clicked( GtkWidget *, app_widgets * );
+void on_saveas_button_clicked( GtkWidget *, app_widgets * );
 
 result_return open_file( gchar*, app_widgets * );
 result_return save_file( app_widgets * );

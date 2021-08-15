@@ -121,7 +121,7 @@ const gchar *glade_definition = R""""(
   </object>
   <object class="GtkWindow" id="window_main">
     <property name="can-focus">False</property>
-    <property name="title" translatable="yes">MIDI Controller</property>
+    <property name="title" translatable="yes">MIDI Controller v0.2</property>
     <property name="resizable">False</property>
     <signal name="destroy" handler="on_window_main_destroy" swapped="no"/>
     <child>
@@ -910,14 +910,15 @@ const gchar *glade_definition = R""""(
             <property name="margin-bottom">10</property>
             <property name="homogeneous">True</property>
             <child>
-              <object class="GtkButton" id="load_button">
-                <property name="label" translatable="yes">Load preset</property>
+              <object class="GtkButton" id="open_button">
+                <property name="label">gtk-open</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="margin-start">10</property>
                 <property name="margin-end">10</property>
-                <signal name="clicked" handler="on_load_button_clicked" swapped="no"/>
+                <property name="use-stock">True</property>
+                <signal name="clicked" handler="on_open_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -927,12 +928,13 @@ const gchar *glade_definition = R""""(
             </child>
             <child>
               <object class="GtkButton" id="save_button">
-                <property name="label" translatable="yes">Save preset</property>
+                <property name="label">gtk-save</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
                 <property name="margin-start">10</property>
                 <property name="margin-end">10</property>
+                <property name="use-stock">True</property>
                 <signal name="clicked" handler="on_save_button_clicked" swapped="no"/>
               </object>
               <packing>
@@ -942,19 +944,35 @@ const gchar *glade_definition = R""""(
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="resend_button">
-                <property name="label" translatable="yes">Resend</property>
+              <object class="GtkButton" id="saveas_button">
+                <property name="label">gtk-save-as</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
                 <property name="receives-default">True</property>
-                <property name="margin-start">10</property>
-                <property name="margin-end">10</property>
-                <signal name="clicked" handler="on_resend_button_clicked" swapped="no"/>
+                <property name="use-stock">True</property>
+                <signal name="clicked" handler="on_saveas_button_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
                 <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="refresh_button">
+                <property name="label">gtk-refresh</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
+                <property name="use-stock">True</property>
+                <signal name="clicked" handler="on_refresh_button_clicked" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -966,6 +984,133 @@ const gchar *glade_definition = R""""(
         </child>
       </object>
     </child>
+  </object>
+  <object class="GtkFileFilter" id="midicontrol_file">
+    <patterns>
+      <pattern>*.midictl</pattern>
+    </patterns>
+  </object>
+  <object class="GtkFileChooserDialog" id="dlg_open">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Open</property>
+    <property name="type-hint">dialog</property>
+    <property name="transient-for">window_main</property>
+    <property name="filter">midicontrol_file</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
+            <child>
+              <object class="GtkButton" id="button1">
+                <property name="label">gtk-cancel</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button2">
+                <property name="label">gtk-open</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-6">button1</action-widget>
+      <action-widget response="-5">button2</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkFileChooserDialog" id="dlg_save_as">
+    <property name="can-focus">False</property>
+    <property name="title" translatable="yes">Save as</property>
+    <property name="type-hint">dialog</property>
+    <property name="transient-for">window_main</property>
+    <property name="action">save</property>
+    <property name="do-overwrite-confirmation">True</property>
+    <property name="filter">midicontrol_file</property>
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="can-focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">2</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox">
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
+            <child>
+              <object class="GtkButton" id="button3">
+                <property name="label">gtk-cancel</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button4">
+                <property name="label">gtk-save-as</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+                <property name="use-stock">True</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="-6">button3</action-widget>
+      <action-widget response="-5">button4</action-widget>
+    </action-widgets>
   </object>
 </interface>
 )"""";

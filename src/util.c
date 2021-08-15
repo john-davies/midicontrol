@@ -31,9 +31,9 @@
 void update_file_path( gchar *new_path, app_widgets *app_wdgts )
 {
 
-  //char *file_name;
+  char *file_name;
   g_info( "util.c / update_file_path");
-  /*
+
   // Copy the whole path
   strncpy( app_wdgts->current_file_path, new_path, MAX_PATHSIZE-1 );
   g_info( "  New file path: %s", app_wdgts->current_file_path );
@@ -50,7 +50,7 @@ void update_file_path( gchar *new_path, app_widgets *app_wdgts )
   }
   app_wdgts->current_file_name[MAX_FILENAME] = '\0';
   g_info( "  New file name: %s", app_wdgts->current_file_name );
-  */
+
   g_info( "util.c / ~update_file_path");
 }
 
@@ -68,7 +68,7 @@ void update_window_title( app_widgets *app_wdgts )
 {
 
   g_info( "util.c / update_window_title");
-  /*
+
   if( strlen( app_wdgts->current_file_name ) > 0 )
   {
     snprintf( app_wdgts->window_title, MAX_WINDOW_TITLE, "%s | %s",
@@ -82,6 +82,6 @@ void update_window_title( app_widgets *app_wdgts )
     gtk_window_set_title( GTK_WINDOW( app_wdgts->w_window_main ), app_wdgts->app_name );
     g_info( "  New window title: %s", app_wdgts->app_name );
   }
-  */
+
   g_info( "util.c / ~update_window_title");
 }

@@ -21,7 +21,7 @@
 result_return init_midi( void );
 
 void send_on_midi_channel( int, int, int );
-void on_resend_button_clicked( GtkWidget *, app_widgets * );
+void on_refresh_button_clicked( GtkWidget *, app_widgets * );
 
 void on_ch1_slider_value_changed( GtkWidget *, app_widgets * );
 void on_ch2_slider_value_changed( GtkWidget *, app_widgets * );

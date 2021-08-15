@@ -105,9 +105,9 @@ void send_on_midi_channel( int channel, int cc, int value )
 //
 // --------------------------------------------------------------------------
 
-void on_resend_button_clicked( GtkWidget *source, app_widgets *app_wdgts)
+void on_refresh_button_clicked( GtkWidget *source, app_widgets *app_wdgts)
 {
-  g_info( "midi.c / on_resend_button_clicked");
+  g_info( "midi.c / on_refresh_button_clicked");
 
   on_ch1_slider_value_changed( source, app_wdgts );
   on_ch2_slider_value_changed( source, app_wdgts );
@@ -126,7 +126,7 @@ void on_resend_button_clicked( GtkWidget *source, app_widgets *app_wdgts)
   on_ch15_slider_value_changed( source, app_wdgts );
   on_ch16_slider_value_changed( source, app_wdgts );
 
-  g_info( "midi.c / ~on_resend_button_clicked");
+  g_info( "midi.c / ~on_refresh_button_clicked");
 }
 
 // --------------------------------------------------------------------------
@@ -140,7 +140,7 @@ void on_ch1_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch1_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch1_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[0] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 1, CC_VALUE, value );
@@ -159,7 +159,7 @@ void on_ch2_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch2_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch2_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[1] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 2, CC_VALUE, value );
@@ -178,7 +178,7 @@ void on_ch3_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch3_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch3_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[2] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 3, CC_VALUE, value );
@@ -197,7 +197,7 @@ void on_ch4_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch4_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch4_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[3] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 4, CC_VALUE, value );
@@ -216,7 +216,7 @@ void on_ch5_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch1_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch5_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[4] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 5, CC_VALUE, value );
@@ -235,7 +235,7 @@ void on_ch6_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch6_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch6_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[5] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 6, CC_VALUE, value );
@@ -254,7 +254,7 @@ void on_ch7_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch7_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch7_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[6] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 7, CC_VALUE, value );
@@ -273,7 +273,7 @@ void on_ch8_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch8_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch8_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[7] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 8, CC_VALUE, value );
@@ -292,7 +292,7 @@ void on_ch9_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch9_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch9_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[8] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 9, CC_VALUE, value );
@@ -311,7 +311,7 @@ void on_ch10_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch10_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch10_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[9] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 10, CC_VALUE, value );
@@ -330,7 +330,7 @@ void on_ch11_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch11_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch11_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[10] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 11, CC_VALUE, value );
@@ -349,7 +349,7 @@ void on_ch12_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch12_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch12_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[11] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 12, CC_VALUE, value );
@@ -368,7 +368,7 @@ void on_ch13_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch13_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch13_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[12] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 13, CC_VALUE, value );
@@ -387,7 +387,7 @@ void on_ch14_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch14_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch14_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[13] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 14, CC_VALUE, value );
@@ -406,7 +406,7 @@ void on_ch15_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch15_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch15_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[14] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 15, CC_VALUE, value );
@@ -425,7 +425,7 @@ void on_ch16_slider_value_changed( GtkWidget *source, app_widgets *app_wdgts )
 {
   g_info( "midi.c / on_ch16_slider_value_changed");
 
-  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_ch16_slider ) );
+  int value = (int) gtk_range_get_value( GTK_RANGE( app_wdgts->w_sliders[15] ) );
   // Send new value
   g_info( "New value: %i", value );
   send_on_midi_channel( 16, CC_VALUE, value );

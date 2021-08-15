@@ -18,5 +18,7 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+void update_file_path( gchar *, app_widgets * );
+void update_window_title( app_widgets * );
 
 #endif
